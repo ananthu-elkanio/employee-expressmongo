@@ -5,6 +5,12 @@ const mongoString = process.env.DATABASE_URL
 const app = express();
 
 
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+    next()
+  })
+
 
 mongoose.connect(mongoString);
 const database = mongoose.connection
